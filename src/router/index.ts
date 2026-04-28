@@ -2,11 +2,11 @@
  * @Author: ayunu ayunu@qq.com
  * @Date: 2026-04-28 22:31:39
  * @LastEditors: ayunu ayunu@qq.com
- * @LastEditTime: 2026-04-29 03:52:00
+ * @LastEditTime: 2026-04-29 04:00:58
  * @FilePath: \admin\src\router\index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
@@ -124,17 +124,17 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
 })
 
 // 处理 GitHub Pages 刷新 404 问题
-router.beforeEach(() => {
-  const redirectPath = sessionStorage.getItem('redirectPath')
-  if (redirectPath) {
-    sessionStorage.removeItem('redirectPath')
-    return redirectPath
-  }
-})
+// router.beforeEach(() => {
+//   const redirectPath = sessionStorage.getItem('redirectPath')
+//   if (redirectPath) {
+//     sessionStorage.removeItem('redirectPath')
+//     return redirectPath
+//   }
+// })
 
 export default router
