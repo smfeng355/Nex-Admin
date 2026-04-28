@@ -1,0 +1,8 @@
+export default {
+  endOfLine: 'lf',
+  printWidth: 120,
+  singleQuote: true,
+  semi: false,
+  trailingComma: 'es5',
+  arrowParens: 'avoid',
+}

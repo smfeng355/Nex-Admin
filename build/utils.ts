@@ -1,15 +1,5 @@
 import type { ProxyOptions } from 'vite'
-
-interface EnvOptions {
-  [key: string]: string | undefined
-}
-
-interface ViteEnv {
-  VITE_PORT?: number
-  VITE_PUBLIC_PATH?: string
-  VITE_PROXY?: [string, string][]
-  [key: string]: any
-}
+import type { EnvOptions, ViteEnv } from './types/env'
 
 const httpsReg = /^https:\/\//
 
@@ -48,13 +38,11 @@ export function createProxy(list: [string, string][] = []): Record<string, Proxy
   for (const [prefix, target] of list) {
     const isHttps = httpsReg.test(target)
 
-    // https://github.com/http-party/node-http-proxy#options
     rst[prefix] = {
       target: target,
       changeOrigin: true,
       ws: true,
       rewrite: (path: string) => path.replace(new RegExp(`^${prefix}`), ''),
-      // https is require secure=false
       ...(isHttps ? { secure: false } : {}),
     }
   }

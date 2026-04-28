@@ -1,0 +1,231 @@
+// src/styles/naive-override.scss
+// Naive UI 主题覆盖
+// 这里的变量会引用 theme.css 中定义的主题色
+
+:root {
+  // ========================================
+  // 引用 theme.css 的主题色
+  // ========================================
+
+  // 主色调
+  --n-primary-color: var(--primary-color);
+  --n-primary-color-hover: var(--primary-color-hover);
+  --n-primary-color-pressed: var(--primary-color-pressed);
+  --n-primary-color-focus: var(--primary-color-focus);
+  --n-primary-color-disabled: var(--primary-color-disabled);
+
+  // 功能色
+  --n-success-color: var(--success-color);
+  --n-success-color-hover: var(--success-color);
+  --n-success-color-pressed: var(--success-color);
+  --n-warning-color: var(--warning-color);
+  --n-warning-color-hover: var(--warning-color);
+  --n-warning-color-pressed: var(--warning-color);
+  --n-error-color: var(--error-color);
+  --n-error-color-hover: var(--error-color);
+  --n-error-color-pressed: var(--error-color);
+  --n-info-color: var(--info-color);
+  --n-info-color-hover: var(--info-color);
+  --n-info-color-pressed: var(--info-color);
+
+  // 文字颜色
+  --n-text-color: var(--text-color);
+  --n-text-color-1: var(--text-color-primary);
+  --n-text-color-2: var(--text-color-regular);
+  --n-text-color-3: var(--text-color-secondary);
+
+  // 边框颜色
+  --n-border-color: var(--border-color);
+  --n-border-color-hover: var(--border-color);
+
+  // 背景颜色
+  --n-color: var(--bg-color);
+  --n-color-hover: var(--bg-color-light);
+  --n-color-pressed: var(--bg-color-light);
+  --n-color-disabled: var(--bg-color-page);
+
+  // 圆角
+  --n-border-radius: var(--border-radius-base);
+  --n-border-radius-small: var(--border-radius-small);
+  --n-border-radius-large: var(--border-radius-large);
+
+  // 字体
+  --n-font-size: var(--font-size-sm);
+
+  // 过渡动画
+  --n-bezier: var(--transition-base);
+
+  // ========================================
+  // 按钮组件
+  // ========================================
+  --n-button-color: var(--bg-color);
+  --n-button-color-hover: var(--bg-color-light);
+  --n-button-color-pressed: var(--bg-color-light);
+  --n-button-color-disabled: var(--bg-color-page);
+  --n-button-text-color: var(--text-color-primary);
+  --n-button-text-color-hover: var(--text-color-primary);
+  --n-button-text-color-pressed: var(--text-color-primary);
+  --n-button-text-color-disabled: var(--text-color-disabled);
+  --n-button-border-color: var(--border-color);
+  --n-button-border-color-hover: var(--border-color);
+  --n-button-border-color-pressed: var(--border-color);
+  --n-button-border-color-disabled: var(--border-color);
+
+  // 主要按钮
+  --n-button-color-primary: var(--primary-color);
+  --n-button-color-hover-primary: var(--primary-color-hover);
+  --n-button-color-pressed-primary: var(--primary-color-pressed);
+  --n-button-color-focus-primary: var(--primary-color-focus);
+  --n-button-color-disabled-primary: var(--primary-color-disabled);
+
+  // ========================================
+  // 输入框组件
+  // ========================================
+  --n-input-color: var(--bg-color);
+  --n-input-color-disabled: var(--bg-color-page);
+  --n-input-color-focus: var(--bg-color);
+  --n-input-border-color: var(--border-color);
+  --n-input-border-color-hover: var(--border-color);
+  --n-input-border-color-focus: var(--primary-color);
+  --n-input-border-color-disabled: var(--border-color);
+  --n-input-text-color: var(--text-color-primary);
+  --n-input-text-color-disabled: var(--text-color-disabled);
+  --n-input-placeholder-color: var(--text-color-placeholder);
+
+  // ========================================
+  // 选择器组件
+  // ========================================
+  --n-select-color: var(--bg-color);
+  --n-select-color-disabled: var(--bg-color-page);
+  --n-select-color-focus: var(--bg-color);
+  --n-select-border-color: var(--border-color);
+  --n-select-border-color-hover: var(--border-color);
+  --n-select-border-color-focus: var(--primary-color);
+  --n-select-border-color-disabled: var(--border-color);
+  --n-select-text-color: var(--text-color-primary);
+  --n-select-text-color-disabled: var(--text-color-disabled);
+  --n-select-placeholder-color: var(--text-color-placeholder);
+
+  // ========================================
+  // 菜单组件
+  // ========================================
+
+  // 菜单箭头颜色
+  --n-arrow-color: var(--text-color-regular);
+  --n-arrow-color-hover: var(--primary-color-hover);
+  --n-arrow-color-active: var(--primary-color);
+  --n-arrow-color-child-active: var(--primary-color);
+  --n-arrow-color-child-active-hover: var(--primary-color-hover);
+  --n-arrow-color-expanded: var(--primary-color);
+
+  // 菜单项文字颜色
+  --n-item-text-color: var(--text-color-regular);
+  --n-item-text-color-hover: var(--primary-color-hover);
+  --n-item-text-color-active: var(--primary-color);
+  --n-item-text-color-child-active: var(--primary-color);
+  --n-item-text-color-child-active-hover: var(--primary-color-hover);
+
+  // 菜单项图标颜色
+  --n-item-icon-color: var(--text-color-secondary);
+  --n-item-icon-color-hover: var(--primary-color-hover);
+  --n-item-icon-color-active: var(--primary-color);
+  --n-item-icon-color-child-active: var(--primary-color);
+
+  // 菜单项背景色
+  --n-item-color-active: var(--primary-color-light);
+  --n-item-color-active-hover: var(--primary-color-light-hover);
+  --n-item-color-child-active: var(--primary-color-light);
+
+  // 菜单分组标签
+  --n-group-text-color: var(--text-color-secondary);
+
+  // ========================================
+  // 表格组件
+  // ========================================
+  --n-table-border-color: var(--border-color);
+  --n-table-color: var(--bg-color);
+  --n-table-color-hover: var(--bg-color-light);
+  --n-table-color-striped: var(--bg-color-light);
+  --n-table-text-color: var(--text-color-primary);
+  --n-table-th-color: var(--bg-color-page);
+  --n-table-th-text-color: var(--text-color-primary);
+
+  // ========================================
+  // 标签组件
+  // ========================================
+  --n-tag-border-radius: var(--border-radius-small);
+
+  // ========================================
+  // 卡片组件
+  // ========================================
+  --n-card-color: var(--bg-color);
+  --n-card-border-color: var(--border-color);
+  --n-card-box-shadow: var(--shadow-base);
+
+  // ========================================
+  // 对话框组件
+  // ========================================
+  --n-modal-color: var(--bg-color);
+  --n-modal-box-shadow: var(--shadow-base);
+
+  // ========================================
+  // 提示组件
+  // ========================================
+  --n-message-color: var(--bg-color);
+  --n-message-box-shadow: var(--shadow-base);
+
+  // ========================================
+  // 下拉菜单组件
+  // ========================================
+  --n-dropdown-color: var(--bg-color);
+  --n-dropdown-box-shadow: var(--shadow-base);
+  --n-dropdown-option-text-color: var(--text-color-primary);
+  --n-dropdown-option-text-color-hover: var(--primary-color-hover);
+  --n-dropdown-option-color-hover: var(--primary-color-light);
+
+  // ========================================
+  // 分页组件
+  // ========================================
+  --n-pagination-item-color: var(--bg-color);
+  --n-pagination-item-color-hover: var(--bg-color-light);
+  --n-pagination-item-color-active: var(--primary-color);
+  --n-pagination-item-color-disabled: var(--bg-color-page);
+  --n-pagination-item-text-color: var(--text-color-primary);
+  --n-pagination-item-text-color-hover: var(--primary-color-hover);
+  --n-pagination-item-text-color-active: var(--primary-color);
+  --n-pagination-item-text-color-disabled: var(--text-color-disabled);
+  --n-pagination-item-border-color: var(--border-color);
+  --n-pagination-item-border-color-hover: var(--border-color);
+  --n-pagination-item-border-color-active: var(--primary-color);
+}
+
+// ========================================
+// 暗黑模式
+// ========================================
+[data-theme='dark'] {
+  // 主色调
+  --n-primary-color: var(--primary-color);
+  --n-primary-color-hover: var(--primary-color-hover);
+  --n-primary-color-pressed: var(--primary-color-pressed);
+
+  // 背景颜色
+  --n-color: var(--bg-color);
+  --n-color-hover: var(--bg-color-light);
+
+  // 文字颜色
+  --n-text-color: var(--text-color);
+  --n-text-color-1: var(--text-color-primary);
+  --n-text-color-2: var(--text-color-regular);
+  --n-text-color-3: var(--text-color-secondary);
+
+  // 边框颜色
+  --n-border-color: var(--border-color);
+
+  // 菜单颜色（暗黑模式）
+  --n-item-text-color: var(--text-color-regular);
+  --n-item-text-color-hover: var(--primary-color-hover);
+  --n-item-text-color-active: var(--primary-color);
+  --n-item-icon-color: var(--text-color-secondary);
+  --n-item-icon-color-hover: var(--primary-color-hover);
+  --n-item-icon-color-active: var(--primary-color);
+}

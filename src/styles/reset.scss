@@ -1,0 +1,327 @@
+/* ========================================
+ * CSS Reset - 现代化样式重置
+ * 基于 Normalize.css、Modern CSS Reset、Tailwind Reset
+ * ======================================== */
+
+// ========== 1. 盒模型与基础设置 ==========
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%; // 防止 iOS 横屏时字体放大
+  -webkit-tap-highlight-color: transparent; // 移除移动端点击高亮
+  scroll-behavior: smooth; // 平滑滚动
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+// ========== 2. 文档与 Body ==========
+body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  color: #333;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased; // iOS 字体抗锯齿
+  -moz-osx-font-smoothing: grayscale; // Mac 字体抗锯齿
+  text-rendering: optimizeLegibility; // 优化字体渲染
+  overflow-x: hidden; // 防止水平滚动
+}
+
+// ========== 3. 段落与文本 ==========
+p {
+  margin-bottom: 1em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+// ========== 4. 链接 ==========
+a {
+  color: inherit;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:link,
+  &:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  // 移除电话链接的默认样式
+  &[href^='tel:'] {
+    color: inherit;
+  }
+}
+
+// ========== 5. 列表 ==========
+ol,
+ul,
+dl {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// ========== 6. 图片与媒体 ==========
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  vertical-align: middle; // 移除图片底部间隙
+  border-style: none; // 移除边框
+  -webkit-user-drag: none; // 禁止拖拽
+  user-select: none; // 禁止选中
+}
+
+// ========== 7. 表格 ==========
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: middle;
+}
+
+// ========== 8. 表单元素 ==========
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+input,
+textarea {
+  resize: none; // 禁止调整大小
+  -webkit-appearance: none; // 移除 iOS 默认样式
+  appearance: none;
+}
+
+// 输入框占位符
+input::placeholder,
+textarea::placeholder {
+  color: #999;
+  opacity: 1; // Firefox 默认透明度
+}
+
+// 移除数字输入框的箭头
+input[type='number'] {
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+// 移除搜索框的清除按钮
+input[type='search'] {
+  -webkit-appearance: textfield;
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+}
+
+// 按钮
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+// 选择框
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+// 文件上传
+input[type='file'] {
+  cursor: pointer;
+
+  &::-webkit-file-upload-button {
+    cursor: pointer;
+  }
+}
+
+// ========== 9. 嵌入式内容 ==========
+iframe {
+  border: none;
+  display: block;
+}
+
+embed,
+object {
+  display: block;
+}
+
+// ========== 10. 交互元素 ==========
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+// ========== 11. 进度条与计量器 ==========
+progress {
+  vertical-align: baseline;
+  display: inline-block;
+}
+
+meter {
+  display: inline-block;
+}
+
+// ========== 12. 可访问性 ==========
+// 屏幕阅读器专用
+.sr-only,
+.screen-reader-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// 聚焦可见（键盘导航）
+:focus-visible {
+  outline: 2px solid #18a058;
+  outline-offset: 2px;
+}
+
+// 移除鼠标点击时的聚焦环
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// ========== 13. 移动端优化 ==========
+@media (max-width: 768px) {
+  html {
+    font-size: 13px;
+  }
+
+  body {
+    -webkit-overflow-scrolling: touch; // iOS 平滑滚动
+  }
+
+  // 禁止长按弹出菜单
+  * {
+    -webkit-touch-callout: none;
+  }
+}
+
+// ========== 14. 打印样式 ==========
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 2cm;
+  }
+}
+
+// ========== 15. 减少动画（可访问性） ==========
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,162 @@
+/* ============================================
+ * 主题颜色变量定义
+ * 说明：修改主色调只需修改 --primary-color 即可
+ *       其他变体会自动计算生成
+ * ============================================ */
+
+:root {
+  /* ========================================
+   * 主色调 - 只需修改这一个值
+   * ======================================== */
+  --primary-color: #0090ce; /* 改这里！ */
+
+  /* 其他变体使用 CSS 函数自动计算 */
+  --primary-color-hover: color-mix(in srgb, var(--primary-color) 85%, #ffffff);
+  --primary-color-pressed: color-mix(in srgb, var(--primary-color) 115%, #000000);
+  --primary-color-focus: color-mix(in srgb, var(--primary-color) 85%, #ffffff);
+  --primary-color-disabled: color-mix(in srgb, var(--primary-color) 50%, #ffffff);
+
+  /* 主色调 - 透明度变体（用于背景） */
+  --primary-color-light: color-mix(in srgb, var(--primary-color) 10%, transparent);
+  --primary-color-light-hover: color-mix(in srgb, var(--primary-color) 15%, transparent);
+  --primary-color-active: color-mix(in srgb, var(--primary-color) 20%, transparent);
+
+  /* ========================================
+   * 成功色 - 固定值
+   * ======================================== */
+  --success-color: #18a058;
+  --success-color-hover: color-mix(in srgb, var(--success-color) 85%, #ffffff);
+  --success-color-pressed: color-mix(in srgb, var(--success-color) 115%, #000000);
+  --success-color-focus: color-mix(in srgb, var(--success-color) 85%, #ffffff);
+  --success-color-disabled: color-mix(in srgb, var(--success-color) 50%, #ffffff);
+  --success-color-light: color-mix(in srgb, var(--success-color) 10%, transparent);
+  --success-color-light-hover: color-mix(in srgb, var(--success-color) 15%, transparent);
+
+  /* ========================================
+   * 警告色 - 固定值
+   * ======================================== */
+  --warning-color: #f0a020;
+  --warning-color-hover: color-mix(in srgb, var(--warning-color) 85%, #ffffff);
+  --warning-color-pressed: color-mix(in srgb, var(--warning-color) 115%, #000000);
+  --warning-color-focus: color-mix(in srgb, var(--warning-color) 85%, #ffffff);
+  --warning-color-disabled: color-mix(in srgb, var(--warning-color) 50%, #ffffff);
+  --warning-color-light: color-mix(in srgb, var(--warning-color) 10%, transparent);
+  --warning-color-light-hover: color-mix(in srgb, var(--warning-color) 15%, transparent);
+
+  /* ========================================
+   * 错误色 - 固定值
+   * ======================================== */
+  --error-color: #d03050;
+  --error-color-hover: color-mix(in srgb, var(--error-color) 85%, #ffffff);
+  --error-color-pressed: color-mix(in srgb, var(--error-color) 115%, #000000);
+  --error-color-focus: color-mix(in srgb, var(--error-color) 85%, #ffffff);
+  --error-color-disabled: color-mix(in srgb, var(--error-color) 50%, #ffffff);
+  --error-color-light: color-mix(in srgb, var(--error-color) 10%, transparent);
+  --error-color-light-hover: color-mix(in srgb, var(--error-color) 15%, transparent);
+
+  /* ========================================
+   * 信息色 - 固定值
+   * ======================================== */
+  --info-color: #2080f0;
+  --info-color-hover: color-mix(in srgb, var(--info-color) 85%, #ffffff);
+  --info-color-pressed: color-mix(in srgb, var(--info-color) 115%, #000000);
+  --info-color-focus: color-mix(in srgb, var(--info-color) 85%, #ffffff);
+  --info-color-disabled: color-mix(in srgb, var(--info-color) 50%, #ffffff);
+  --info-color-light: color-mix(in srgb, var(--info-color) 10%, transparent);
+  --info-color-light-hover: color-mix(in srgb, var(--info-color) 15%, transparent);
+
+  /* ========================================
+   * 文字颜色
+   * ======================================== */
+  --text-color: #333639;
+  --text-color-primary: #333639;
+  --text-color-regular: #666666;
+  --text-color-secondary: #999999;
+  --text-color-placeholder: #c0c4cc;
+  --text-color-disabled: #c0c4cc;
+
+  /* ========================================
+   * 边框颜色
+   * ======================================== */
+  --border-color: #e0e0e6;
+  --border-color-hover: #c0c4cc;
+
+  /* ========================================
+   * 背景颜色
+   * ======================================== */
+  --bg-color: #ffffff;
+  --bg-color-light: #f5f5f5;
+  --bg-color-page: #f0f2f5;
+
+  /* ========================================
+   * 圆角
+   * ======================================== */
+  --border-radius-small: 4px;
+  --border-radius-base: 8px;
+  --border-radius-large: 12px;
+
+  /* ========================================
+   * 间距
+   * ======================================== */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+
+  /* ========================================
+   * 字体大小
+   * ======================================== */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+
+  /* ========================================
+   * 过渡动画
+   * ======================================== */
+  --transition-base: all 0.3s ease;
+  --transition-fast: all 0.2s ease;
+  --transition-slow: all 0.5s ease;
+
+  /* ========================================
+   * 阴影
+   * ======================================== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================
+ * 暗黑模式
+ * ============================================ */
+[data-theme='dark'] {
+  /* 主色调 - 自动计算 */
+  --primary-color: color-mix(in srgb, var(--primary-color) 90%, #ffffff);
+  --primary-color-hover: color-mix(in srgb, var(--primary-color) 80%, #ffffff);
+  --primary-color-pressed: color-mix(in srgb, var(--primary-color) 100%, #000000);
+  --primary-color-focus: color-mix(in srgb, var(--primary-color) 80%, #ffffff);
+  --primary-color-disabled: color-mix(in srgb, var(--primary-color) 50%, #000000);
+
+  --primary-color-light: color-mix(in srgb, var(--primary-color) 15%, transparent);
+  --primary-color-light-hover: color-mix(in srgb, var(--primary-color) 20%, transparent);
+
+  /* 文字颜色 */
+  --text-color: #e5e5e5;
+  --text-color-primary: #e5e5e5;
+  --text-color-regular: #bfbfbf;
+  --text-color-secondary: #8c8c8c;
+  --text-color-placeholder: #666666;
+  --text-color-disabled: #666666;
+
+  /* 边框颜色 */
+  --border-color: #4a4a4a;
+  --border-color-hover: #666666;
+
+  /* 背景颜色 */
+  --bg-color: #1a1a1a;
+  --bg-color-light: #2a2a2a;
+  --bg-color-page: #141414;
+}

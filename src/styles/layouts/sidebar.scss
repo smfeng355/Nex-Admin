@@ -1,0 +1,188 @@
+// 侧边栏菜单样式
+// 说明：颜色通过 naive-override.scss 中的 CSS 变量控制
+
+.side-menu {
+  // 菜单项
+  .n-menu-item {
+    border-radius: var(--border-radius-small);
+  }
+
+  // 菜单项内容
+  .n-menu-item-content {
+    position: relative;
+    border-radius: var(--border-radius-small);
+    padding: 0 var(--spacing-md);
+
+    // ========================================
+    // 背景层（选中/悬停时显示）
+    // ========================================
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: var(--border-radius-small);
+      background-color: transparent;
+      transition: background-color var(--transition-base);
+    }
+
+    // ========================================
+    // 左侧边框层（选中时显示 3px 指示条）
+    // ========================================
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 5px;
+      height: 0;
+      pointer-events: none;
+      background-color: transparent;
+      border-radius: var(--border-radius-small);
+      transition: background-color 0.3s var(--transition-base);
+    }
+
+    // ========================================
+    // 顶级菜单选中（无子菜单）
+    // 只显示左侧边框，不显示背景色
+    // ========================================
+    &.n-menu-item-content--selected {
+      // 顶级菜单只加左边框
+      &::after {
+        height: 100%;
+        background-color: var(--primary-color);
+      }
+
+      .n-menu-item-content-header {
+        color: var(--primary-color) !important;
+      }
+
+      .n-menu-item-content__icon {
+        color: var(--primary-color) !important;
+      }
+    }
+
+    // ========================================
+    // 子菜单选中状态
+    // 显示浅色背景 + 左侧 3px 主题色边框
+    // ========================================
+    &.n-menu-item-content--child-active {
+      &::before {
+        background-color: transparent !important;
+      }
+
+      &::after {
+        height: 100%;
+        background-color: transparent !important;
+      }
+
+      .n-menu-item-content-header {
+        color: var(--primary-color) !important;
+      }
+
+      .n-menu-item-content__icon {
+        color: var(--primary-color) !important;
+      }
+    }
+
+    // ========================================
+    // 子菜单项（未选中）
+    // ========================================
+    &.n-menu-item-content--child {
+      padding-left: var(--spacing-xl) !important;
+
+      .n-menu-item-content-header {
+        color: var(--text-color-regular) !important;
+      }
+
+      .n-menu-item-content__icon {
+        color: var(--text-color-secondary) !important;
+      }
+    }
+
+    // ========================================
+    // 父菜单展开状态（只改变文字和图标颜色）
+    // ========================================
+    &.n-menu-item-content--collapsed.n-menu-item-content--expanded {
+      .n-menu-item-content-header {
+        color: var(--primary-color) !important;
+      }
+
+      .n-menu-item-content__icon {
+        color: var(--primary-color) !important;
+      }
+    }
+
+    // ========================================
+    // 禁用状态
+    // ========================================
+    &.n-menu-item-content--disabled {
+      .n-menu-item-content-header {
+        color: var(--text-color-disabled) !important;
+      }
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  // ========================================
+  // 图标容器
+  // ========================================
+  .n-menu-item-content__icon {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-md);
+    transition: color var(--transition-base);
+
+    // UnoCSS 图标 - mask 模式（继承 color 属性）
+    > span {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px !important;
+      line-height: 1;
+      width: 1em !important;
+      height: 1em !important;
+      color: currentColor !important;
+    }
+  }
+
+  // ========================================
+  // 菜单文字
+  // ========================================
+  .n-menu-item-content-header {
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-base);
+  }
+}
+
+// ========================================
+// 折叠状态（侧边栏收起）
+// ========================================
+.side-menu.n-menu--collapsed {
+  .n-menu-item-content {
+    &.n-menu-item-content--selected,
+    &.n-menu-item-content--child-active {
+      &::before {
+        background-color: var(--primary-color-light) !important;
+      }
+    }
+  }
+}
+
+// ========================================
+// 键盘导航聚焦状态
+// ========================================
+.side-menu {
+  .n-menu-item-content:focus-visible {
+    &::before {
+      background-color: var(--primary-color-light-hover) !important;
+    }
+
+    outline: 2px solid var(--primary-color-focus);
+    outline-offset: 2px;
+  }
+}
