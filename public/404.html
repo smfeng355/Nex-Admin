@@ -1,11 +1,3 @@
-<!--
- * @Author: ayunu ayunu@qq.com
- * @Date: 2026-04-29 03:49:36
- * @LastEditors: ayunu ayunu@qq.com
- * @LastEditTime: 2026-04-29 03:49:47
- * @FilePath: \admin\public\404.html
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <!doctype html>
 <html lang="zh-CN">
   <head>
@@ -13,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nex-Admin</title>
     <script>
-      // 获取当前路径
-      const path = window.location.pathname
-      // 重定向到根路径，并将原路径保存到 sessionStorage
-      sessionStorage.setItem('redirectPath', path)
-      // 跳转到首页
-      window.location.href = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/') + '/'
+      // 保存原始路径
+      sessionStorage.setItem('redirectPath', window.location.pathname)
+      // 重定向到 GitHub Pages 的根路径
+      window.location.href = '/Nex-Admin/'
     </script>
   </head>
   <body>
