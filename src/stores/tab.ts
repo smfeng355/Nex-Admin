@@ -90,7 +90,7 @@ export const useTabStore = defineStore('tab', () => {
     saveTabs()
   }
 
-  function reloadTab(path: string, keepAlive?: boolean) {
+  function reloadTab(_path: string, keepAlive?: boolean) {
     // 这里可以实现页面重新加载的逻辑
     // 如果需要 keep-alive，需要先移除缓存再重新添加
     if (keepAlive) {

@@ -2,7 +2,7 @@
  * @Author: ayunu ayunu@qq.com
  * @Date: 2026-04-28 20:15:04
  * @LastEditors: ayunu ayunu@qq.com
- * @LastEditTime: 2026-04-30 01:11:57
+ * @LastEditTime: 2026-04-30 17:19:37
  * @FilePath: \admin\src\layouts\components\SideMenu.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -56,6 +56,7 @@ function renderIcon(icon?: string) {
       icon: iconName,
       width: 18,
       height: 18,
+      'aria-hidden': 'true',
     })
   }
 }

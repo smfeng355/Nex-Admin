@@ -1,9 +1,16 @@
 <template>
   <span class="icon" :class="className" :style="customStyle">
-    <Icon v-if="isIconifyIcon" :icon="iconName" :width="iconSize" :height="iconSize" :color="iconColor" />
-    <i v-else-if="icon && !isCustomSvg" :class="icon"></i>
-    <svg v-else-if="isCustomSvg" viewBox="0 0 24 24" fill="currentColor" v-html="icon"></svg>
-    <span v-else class="icon-placeholder"></span>
+    <Icon
+      v-if="isIconifyIcon"
+      :icon="iconName"
+      :width="iconSize"
+      :height="iconSize"
+      :color="iconColor"
+      aria-hidden="true"
+    />
+    <i v-else-if="icon && !isCustomSvg" :class="icon" aria-hidden="true"></i>
+    <svg v-else-if="isCustomSvg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" v-html="icon"></svg>
+    <span v-else class="icon-placeholder" aria-hidden="true"></span>
   </span>
 </template>
 

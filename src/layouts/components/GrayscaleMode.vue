@@ -1,8 +1,16 @@
+<!--
+ * @Author: ayunu ayunu@qq.com
+ * @Date: 2026-04-30 00:59:18
+ * @LastEditors: ayunu ayunu@qq.com
+ * @LastEditTime: 2026-04-30 17:21:26
+ * @FilePath: \admin\src\layouts\components\GrayscaleMode.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <div class="grayscale-toggle" @click="toggleGrayscale">
     <n-tooltip trigger="hover" placement="bottom">
       <template #trigger>
-        <Icon :icon="appStore.grayscale ? 'mdi:eye-off' : 'mdi:eye'" :width="20" :height="20" />
+        <IconComponent :icon="appStore.grayscale ? 'mdi:eye-off' : 'mdi:eye'" :size="20" />
       </template>
       {{ appStore.grayscale ? '关闭置灰模式' : '开启置灰模式' }}
     </n-tooltip>
@@ -10,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
 import { useAppStore } from '@/stores/app'
+import IconComponent from '@/components/Icon.vue'
 
 const appStore = useAppStore()
 
