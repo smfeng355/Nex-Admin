@@ -14,17 +14,54 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { zhCN, dateZhCN, darkTheme } from 'naive-ui'
 import { useAppStore } from '@/stores/app'
-import { themeOverrides as baseThemeOverrides, darkThemeOverrides } from '@/config/theme'
+import { darkThemeOverrides } from '@/config/theme'
 
 const appStore = useAppStore()
 
 const theme = computed(() => (appStore.theme === 'dark' ? darkTheme : null))
 
-const themeOverrides = computed(() => ({
-  ...baseThemeOverrides,
-  ...(appStore.theme === 'dark' ? darkThemeOverrides : {}),
-}))
+// 主题覆盖配置（响应式）
+const themeOverrides = ref({
+  common: {
+    primaryColor: appStore.primaryColor,
+    primaryColorHover: appStore.primaryColor + 'DD',
+    primaryColorPressed: appStore.primaryColor + 'FF',
+    primaryColorSuppl: appStore.primaryColor,
+  },
+})
+
+// 监听主题色变化
+watch(
+  () => appStore.primaryColor,
+  newColor => {
+    themeOverrides.value = {
+      common: {
+        primaryColor: newColor,
+        primaryColorHover: newColor + 'DD',
+        primaryColorPressed: newColor + 'FF',
+        primaryColorSuppl: newColor,
+      },
+    }
+  },
+  { immediate: true }
+)
+
+// 监听主题模式变化（亮色/暗色）
+watch(
+  () => appStore.theme,
+  () => {
+    themeOverrides.value = {
+      common: {
+        primaryColor: appStore.primaryColor,
+        primaryColorHover: appStore.primaryColor + 'DD',
+        primaryColorPressed: appStore.primaryColor + 'FF',
+        primaryColorSuppl: appStore.primaryColor,
+      },
+      ...(appStore.theme === 'dark' ? darkThemeOverrides : {}),
+    }
+  }
+)
 </script>

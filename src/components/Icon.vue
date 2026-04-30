@@ -1,14 +1,7 @@
-<!--
- * @Author: ayunu ayunu@qq.com
- * @Date: 2026-04-28 22:27:56
- * @LastEditors: ayunu ayunu@qq.com
- * @LastEditTime: 2026-04-28 22:28:07
- * @FilePath: \admin\src\components\Icon.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <template>
   <span class="icon" :class="className" :style="customStyle">
-    <i v-if="icon && !isCustomSvg" :class="icon"></i>
+    <Icon v-if="isIconifyIcon" :icon="iconName" :width="iconSize" :height="iconSize" :color="iconColor" />
+    <i v-else-if="icon && !isCustomSvg" :class="icon"></i>
     <svg v-else-if="isCustomSvg" viewBox="0 0 24 24" fill="currentColor" v-html="icon"></svg>
     <span v-else class="icon-placeholder"></span>
   </span>
@@ -16,6 +9,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { Icon } from '@iconify/vue'
 
 interface Props {
   icon?: string
@@ -35,6 +29,24 @@ const props = withDefaults(defineProps<Props>(), {
 const isCustomSvg = computed(() => {
   return props.icon?.startsWith('<svg') || props.icon?.includes('path')
 })
+
+const isIconifyIcon = computed(() => {
+  if (!props.icon || isCustomSvg.value) return false
+  // 支持两种格式：'fe:wordpress' 或 'i-fe:wordpress'
+  const cleanIcon = props.icon.replace(/^i-/, '')
+  return cleanIcon.includes(':')
+})
+
+const iconName = computed(() => {
+  // 去掉 i- 前缀
+  return props.icon.replace(/^i-/, '')
+})
+
+const iconSize = computed(() => {
+  return typeof props.size === 'number' ? props.size : parseInt(props.size as string) || 16
+})
+
+const iconColor = computed(() => props.color || 'currentColor')
 
 const className = computed(() => {
   const classes = ['icon-base']

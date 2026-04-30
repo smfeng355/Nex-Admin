@@ -1,3 +1,11 @@
+/*
+ * @Author: ayunu ayunu@qq.com
+ * @Date: 2026-04-29 03:01:26
+ * @LastEditors: ayunu ayunu@qq.com
+ * @LastEditTime: 2026-04-30 01:29:27
+ * @FilePath: \admin\src\utils\color.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 /**
  * 颜色工具函数
  * 从全局变量读取主题色（由 Vite 插件注入）
@@ -72,8 +80,8 @@ export function getThemeColors() {
     return globalColors
   }
 
-  // 开发环境默认值
-  const primaryColor = '#09665e'
+  // 开发环境默认值 - 与 theme.css 保持一致
+  const primaryColor = '#316c72'
 
   return {
     primary: primaryColor,

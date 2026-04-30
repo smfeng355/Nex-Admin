@@ -2,7 +2,7 @@
  * @Author: ayunu ayunu@qq.com
  * @Date: 2026-04-29 02:14:53
  * @LastEditors: ayunu ayunu@qq.com
- * @LastEditTime: 2026-04-29 02:52:05
+ * @LastEditTime: 2026-04-29 15:39:04
  * @FilePath: \admin\src\layouts\components\MenuCollapse.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -14,13 +14,14 @@
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
-    <span v-if="appStore.collapsed" class="i-carbon:menu w-20px h-20px" />
-    <span v-else class="i-carbon:side-panel-close w-20px h-20px" />
+    <Icon v-if="appStore.collapsed" icon="line-md:menu-fold-right" :width="20" :height="20" />
+    <Icon v-else icon="line-md:menu-fold-left" :width="20" :height="20" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useAppStore } from '@/stores/app'
+import { Icon } from '@iconify/vue'
 
 const appStore = useAppStore()
 

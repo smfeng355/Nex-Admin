@@ -2,7 +2,7 @@
  * @Author: ayunu ayunu@qq.com
  * @Date: 2026-04-28 20:15:04
  * @LastEditors: ayunu ayunu@qq.com
- * @LastEditTime: 2026-04-29 00:25:31
+ * @LastEditTime: 2026-04-30 01:11:57
  * @FilePath: \admin\src\layouts\components\SideMenu.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -12,7 +12,7 @@
     class="side-menu"
     accordion
     :indent="18"
-    :collapsed-icon-size="22"
+    :collapsed-icon-size="20"
     :collapsed-width="64"
     :collapsed="appStore.collapsed"
     :options="menuOptions"
@@ -26,6 +26,7 @@ import { computed, ref, watch, h, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { MenuOption } from 'naive-ui'
 import { useAppStore } from '@/stores/app'
+import { Icon as IconifyIcon } from '@iconify/vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -45,10 +46,18 @@ watch(
   }
 )
 
-// 渲染图标 - UnoCSS mask 模式
+// 渲染图标 - 使用 @iconify/vue
 function renderIcon(icon?: string) {
   if (!icon) return undefined
-  return () => h('span', { class: icon })
+  return () => {
+    // 去掉 i- 前缀，转换为 Iconify 格式
+    const iconName = icon.replace(/^i-/, '')
+    return h(IconifyIcon, {
+      icon: iconName,
+      width: 18,
+      height: 18,
+    })
+  }
 }
 
 // 生成菜单选项
@@ -90,11 +99,9 @@ const menuOptions = computed<MenuOption[]>(() => {
   return Array.from(menuMap.values())
 })
 
-// 菜单点击事件
+// 菜单点击事件 - 直接通过 key 跳转
 function handleMenuSelect(key: string) {
-  const routeItem = router.getRoutes().find(r => r.name === key)
-  if (!routeItem?.path) return
-  router.push(routeItem.path)
+  router.push({ name: key })
 }
 </script>
 

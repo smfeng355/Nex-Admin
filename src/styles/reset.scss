@@ -75,23 +75,31 @@ sup {
 // ========== 4. 链接 ==========
 a {
   color: inherit;
-  text-decoration: none;
+  text-decoration: none !important;
   background-color: transparent;
   cursor: pointer;
   transition: color 0.2s ease;
 
-  &:hover,
+  &:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+
   &:active,
-  &:focus,
-  &:link,
-  &:visited {
-    text-decoration: none;
-    color: inherit;
+  &:focus {
+    outline: none;
   }
 
   // 移除电话链接的默认样式
   &[href^='tel:'] {
     color: inherit;
+  }
+
+  // 外部链接样式
+  &[target='_blank'] {
+    &:hover {
+      color: var(--primary-color);
+    }
   }
 }
 

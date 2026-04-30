@@ -1,3 +1,11 @@
+/*
+ * @Author: ayunu ayunu@qq.com
+ * @Date: 2026-04-29 03:21:06
+ * @LastEditors: ayunu ayunu@qq.com
+ * @LastEditTime: 2026-04-29 20:00:07
+ * @FilePath: \admin\build\plugin\theme-injector.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import type { Plugin } from 'vite'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
@@ -9,9 +17,9 @@ function extractPrimaryColorFromCSS(): string {
   const cssPath = resolve(__dirname, '../../src/styles/theme.css')
   const cssContent = readFileSync(cssPath, 'utf-8')
 
-  const match = cssContent.match(/--primary-color:\s*(#[0-9a-fA-F]{3,8})/)
+  const match = cssContent.match(/--primary-base-color:\s*(#[0-9a-fA-F]{3,8})/)
   if (!match) {
-    throw new Error('无法从 theme.css 中提取 --primary-color')
+    throw new Error('无法从 theme.css 中提取 --primary-base-color')
   }
 
   return match[1]

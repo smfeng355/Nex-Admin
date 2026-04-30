@@ -1,26 +1,23 @@
+<!--
+ * @Author: ayunu ayunu@qq.com
+ * @Date: 2026-04-29 01:26:56
+ * @LastEditors: ayunu ayunu@qq.com
+ * @LastEditTime: 2026-04-30 01:12:36
+ * @FilePath: \admin\src\layouts\layout.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
-  <div class="layout-container w-full h-full flex">
-    <!-- 左侧边栏 -->
-    <aside
-      class="side-aside"
-      :class="appStore.collapsed ? 'collapsed' : 'expanded'"
-      :style="{ borderRight: `1px solid var(--border-color)` }"
-    >
+  <div class="layout-container">
+    <aside class="side-aside" :class="{ collapsed: appStore.collapsed }">
       <SideLogo :collapsed="appStore.collapsed" />
       <SideMenu />
     </aside>
 
-    <!-- 右侧内容区 -->
     <article class="content-area">
-      <!-- 顶部导航 -->
       <AppHeader />
-
-      <!-- 标签页 -->
-      <div class="tabs">
-        <div>Tab</div>
+      <div class="tabs-wrapper">
+        <TabBar class="tabs-bar" />
       </div>
-
-      <!-- 主内容区 -->
       <main class="main-content">
         <router-view v-slot="{ Component }">
           <transition name="fade-slide" mode="out-in">
@@ -30,6 +27,7 @@
           </transition>
         </router-view>
       </main>
+      <Footer />
     </article>
   </div>
 </template>
@@ -38,43 +36,40 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
-
-// 统一导入所有布局组件
-import { SideLogo, SideMenu, AppHeader } from './components'
+import { useTabStore } from '@/stores/tab'
+import { SideLogo, SideMenu, AppHeader, TabBar, Footer } from './components'
 
 const route = useRoute()
 const appStore = useAppStore()
-
-// 缓存的视图
+const tabStore = useTabStore()
 const cachedViews = ref<string[]>([])
 
-// 监听路由变化，添加缓存
 watch(
   () => route.name,
-  newName => {
-    if (newName) {
-      const viewName = newName as string
-      if (!cachedViews.value.includes(viewName)) {
-        cachedViews.value.push(viewName)
-      }
-    }
+  () => {
+    tabStore.addTab(route)
   },
   { immediate: true }
 )
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.layout-container {
+  @apply w-full h-full flex;
+}
+
 .side-aside {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   transition: width 300ms;
+  border-right: 1px solid var(--border-color);
 
   &.collapsed {
     width: 64px;
   }
 
-  &.expanded {
+  &:not(.collapsed) {
     width: 220px;
   }
 }
@@ -86,25 +81,8 @@ watch(
   flex: 1;
 }
 
-.header {
-  height: 60px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  border-bottom: 1px solid #e4e7ed;
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.tabs {
-  padding: 0 12px;
-  border-bottom: 1px solid #e4e7ed;
+.tabs-bar {
+  @apply flex-shrink-0 h-60 p-12;
 }
 
 .main-content {
@@ -113,7 +91,6 @@ watch(
   padding: 16px;
 }
 
-// 路由过渡动画
 .fade-slide-enter-active,
 .fade-slide-leave-active {
   transition: all 0.3s ease;

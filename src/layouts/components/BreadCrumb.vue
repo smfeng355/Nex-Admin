@@ -1,11 +1,15 @@
+<!--
+ * @Author: ayunu ayunu@qq.com
+ * @Date: 2026-04-29 02:16:37
+ * @LastEditors: ayunu ayunu@qq.com
+ * @LastEditTime: 2026-04-29 21:10:56
+ * @FilePath: \admin\src\layouts\components\BreadCrumb.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <n-breadcrumb>
-    <n-breadcrumb-item v-if="!breadItems?.length" :clickable="false">
-      {{ route.meta.title }}
-    </n-breadcrumb-item>
     <n-breadcrumb-item
       v-for="(item, index) of breadItems"
-      v-else
       :key="item.name"
       :clickable="!!item.path"
       @click="handleItemClick(item)"
@@ -15,7 +19,7 @@
         @select="handleDropSelect"
       >
         <div class="flex items-center">
-          <span v-if="item.icon" :class="item.icon" class="mr-8" />
+          <Icon v-if="item.icon" :icon="getIconName(item.icon)" class="mr-8" :width="16" :height="16" />
           {{ item.title }}
         </div>
       </n-dropdown>
@@ -24,10 +28,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, h } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { MenuOption } from 'naive-ui'
-import { h } from 'vue'
+import { Icon } from '@iconify/vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -40,48 +44,28 @@ interface BreadItem {
   children?: BreadItem[]
 }
 
-const breadItems = ref<BreadItem[]>([])
-
-// 监听路由变化，生成面包屑
-watch(
-  () => route.name,
-  () => {
-    const result = findBreadCrumbs(router.getRoutes(), route.name as string)
-    breadItems.value = result || []
-  },
-  { immediate: true }
-)
-
-// 查找面包屑路径
-function findBreadCrumbs(routes: any[], targetName: string, parents: BreadItem[] = []): BreadItem[] | null {
-  for (const route of routes) {
-    if (route.name === targetName) {
-      return [
-        ...parents,
-        {
-          name: route.name as string,
-          title: (route.meta?.title as string) || '',
-          path: route.path,
-          icon: route.meta?.icon as string,
-        },
-      ]
-    }
-    if (route.children?.length) {
-      const found = findBreadCrumbs(route.children, targetName, [
-        ...parents,
-        {
-          name: route.name as string,
-          title: (route.meta?.title as string) || '',
-          path: route.path !== '/' ? route.path : undefined,
-          icon: route.meta?.icon as string,
-          children: route.children,
-        },
-      ])
-      if (found) return found
-    }
-  }
-  return null
+// 获取图标名称（去掉 i- 前缀）
+function getIconName(icon: string): string {
+  return icon.replace(/^i-/, '')
 }
+
+// 使用 route.matched 构建面包屑
+const breadItems = computed<BreadItem[]>(() => {
+  return route.matched
+    .filter(item => item.meta?.menu !== false && item.meta?.title)
+    .map(item => ({
+      name: item.name as string,
+      title: (item.meta?.title as string) || '',
+      path: item.path,
+      icon: item.meta?.icon as string,
+      children: item.children?.map(child => ({
+        name: child.name as string,
+        title: (child.meta?.title as string) || '',
+        path: child.path,
+        icon: child.meta?.icon as string,
+      })),
+    }))
+})
 
 // 点击面包屑项
 function handleItemClick(item: BreadItem) {
@@ -97,7 +81,14 @@ function getDropOptions(children: BreadItem[] = []): MenuOption[] {
     .map(child => ({
       label: child.title,
       key: child.name,
-      icon: child.icon ? () => h('span', { class: child.icon }) : undefined,
+      icon: child.icon
+        ? () =>
+            h(Icon, {
+              icon: getIconName(child.icon!),
+              width: 16,
+              height: 16,
+            })
+        : undefined,
     }))
 }
 

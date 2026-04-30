@@ -2,7 +2,7 @@
  * @Author: ayunu ayunu@qq.com
  * @Date: 2026-04-28 22:31:39
  * @LastEditors: ayunu ayunu@qq.com
- * @LastEditTime: 2026-04-29 04:00:58
+ * @LastEditTime: 2026-04-30 01:09:40
  * @FilePath: \admin\src\router\index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -25,21 +25,12 @@ const routes: RouteRecordRaw[] = [
     redirect: '/dashboard',
     children: [
       {
-        path: 'dashboard',
-        name: 'Dashboard',
-        component: () => import('@/views/Dashboard.vue'),
-        meta: {
-          title: '仪表盘',
-          icon: 'i-carbon:dashboard',
-          menu: true,
-        },
-      },
-      {
         path: 'system',
         name: 'System',
+        redirect: '/system/user',
         meta: {
-          title: '系统管理',
-          icon: 'i-carbon:settings',
+          title: '基础功能',
+          icon: 'feather:grid',
           menu: true,
         },
         children: [
@@ -48,10 +39,10 @@ const routes: RouteRecordRaw[] = [
             name: 'UserManage',
             component: () => import('@/views/system/UserManage.vue'),
             meta: {
-              title: '用户管理',
-              icon: 'i-carbon:user-role',
-              parentKey: 'System',
+              title: '图标 Icon',
+              icon: 'feather:feather',
               menu: true,
+              parentKey: 'System',
             },
           },
           {
@@ -59,32 +50,32 @@ const routes: RouteRecordRaw[] = [
             name: 'RoleManage',
             component: () => import('@/views/system/RoleManage.vue'),
             meta: {
-              title: '角色管理',
-              icon: 'i-carbon:security',
-              parentKey: 'System',
+              title: '基础组件',
+              icon: 'material-symbols:auto-awesome-outline',
               menu: true,
+              parentKey: 'System',
             },
           },
-        ],
-      },
-      {
-        path: 'system1',
-        name: 'System1',
-        meta: {
-          title: '系统管理1',
-          icon: 'i-carbon:settings',
-          menu: true,
-        },
-        children: [
           {
-            path: 'user1',
-            name: 'UserManage1',
-            component: () => import('@/views/system/UserManage.vue'),
+            path: 'role3',
+            name: 'RoleManage3',
+            component: () => import('@/views/system/RoleManage.vue'),
             meta: {
-              title: '用户管理11',
-              icon: 'i-carbon:user-role',
-              parentKey: 'System1',
+              title: 'Unocss',
+              icon: 'material-symbols:auto-awesome-outline',
               menu: true,
+              parentKey: 'System',
+            },
+          },
+          {
+            path: 'role2',
+            name: 'RoleManage2',
+            component: () => import('@/views/system/RoleManage.vue'),
+            meta: {
+              title: 'KeepAlive',
+              icon: 'material-symbols:auto-awesome-outline',
+              menu: true,
+              parentKey: 'System',
             },
           },
           {
@@ -92,10 +83,10 @@ const routes: RouteRecordRaw[] = [
             name: 'RoleManage1',
             component: () => import('@/views/system/RoleManage.vue'),
             meta: {
-              title: '角色管理1',
-              icon: 'i-carbon:security',
-              parentKey: 'System1',
+              title: 'MeModal',
+              icon: 'feather:grid',
               menu: true,
+              parentKey: 'System',
             },
           },
         ],
@@ -106,7 +97,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/TestLayout.vue'),
         meta: {
           title: '测试页面',
-          icon: 'i-carbon:code',
+          icon: 'carbon:code',
           menu: true,
         },
       },
@@ -127,14 +118,5 @@ const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
 })
-
-// 处理 GitHub Pages 刷新 404 问题
-// router.beforeEach(() => {
-//   const redirectPath = sessionStorage.getItem('redirectPath')
-//   if (redirectPath) {
-//     sessionStorage.removeItem('redirectPath')
-//     return redirectPath
-//   }
-// })
 
 export default router
