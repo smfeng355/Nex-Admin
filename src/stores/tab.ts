@@ -25,10 +25,13 @@ export const useTabStore = defineStore('tab', () => {
     const { name, path, meta } = route
     if (!name || !meta?.menu) return
 
+    // 确保 name 是 string 类型（Vue Router 的 name 可能是 symbol）
+    const routeName = typeof name === 'string' ? name : String(name)
+
     const tab: TabItem = {
       path,
-      title: (meta.title as string) || name,
-      name: name as string,
+      title: (meta.title as string) || routeName,
+      name: routeName,
       icon: (meta.icon as string) || '',
     }
 
